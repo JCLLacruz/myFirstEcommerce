@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import AppReducer from "./AppReducer"
+import UserReducer from "./UserReducer"
 import axios from 'axios';
 
 const API_URL ='https://serverecommerce-w9o2.onrender.com';
@@ -10,10 +10,10 @@ const initialState = {
   user: {}
 }
 
-export const GlobalContext = createContext(initialState);
+export const UserContext = createContext(initialState);
 
-export const GlobalProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+export const UserProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(UserReducer, initialState);
   
     const register = async (user) => {
             try {
@@ -28,13 +28,13 @@ export const GlobalProvider = ({ children }) => {
             }
           };
     return (
-        <GlobalContext.Provider
+        <UserContext.Provider
           value={{
             user: state.user,
             register,
           }}
         >
           {children}
-        </GlobalContext.Provider>
+        </UserContext.Provider>
       );
 }

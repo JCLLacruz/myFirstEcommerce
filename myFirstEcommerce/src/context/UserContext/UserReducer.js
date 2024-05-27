@@ -3,7 +3,7 @@ const users = (state, action) => {
 		case 'POST_USER':
 			return {
 				...state,
-				news: action.payload,
+				user: action.payload,
 			};
 		default:
 			return state;

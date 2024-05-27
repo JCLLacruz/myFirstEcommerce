@@ -1,3 +1,94 @@
+// Import Bootstrap functions and variables
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// Custom variables
+$theme-colors: (
+  "primary": #4e73df,   // Azul vibrante
+  "secondary": #f6c23e, // Naranja
+  "success": #1cc88a,   // Verde
+  "info": #36b9cc,      // Azul claro
+  "warning": #f6c23e,   // Naranja
+  "danger": #e74a3b,    // Rojo
+  "light": #f8f9fc,     // Blanco
+  "dark": #5a5c69       // Gris oscuro
+);
+
+$body-bg: #f8f9fc;
+$body-color: #5a5c69;
+$font-family-base: 'Roboto', 'Helvetica Neue', sans-serif;
+$font-family-heading: 'Montserrat', sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+
+// Import Bootstrap to apply custom variables
+@import "~bootstrap/scss/bootstrap";
+
+// Custom styles
+body {
+  font-family: $font-family-base;
+  background-color: $body-bg;
+  color: $body-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+}
+
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-img-top {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+
+    .card-title {
+      font-family: $font-family-heading;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: map-get($theme-colors, "dark");
+    }
+
+    .card-text {
+      color: map-get($theme-colors, "secondary");
+      margin-bottom: 0.75rem;
+    }
+  }
+}
+
+.navbar {
+  background-color: map-get($theme-colors, "primary");
+
+  .navbar-brand, 
+  .nav-link {
+    color: #fff !important;
+    &:hover {
+      color: map-get($theme-colors, "light") !important;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+  }
+}
+
+footer {
+  background-color: map-get($theme-color
 
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';

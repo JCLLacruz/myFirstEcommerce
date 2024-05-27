@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react';
+import { ProductContext } from '../../context/ProductContext/ProductState';
+import Product from '../Product/Product';
+import './Products.scss';
 
 const Products = () => {
-  return (
-    <div>Products</div>
-  )
-}
+	const { products, getAll } = useContext(ProductContext);
 
-export default Products
+	useEffect(() => {
+		getAll();
+	}, []);
+
+	return (
+		<div id='productsDiv' className='d-flex flex-wrap gap-2'>
+			{products.map((product) => (
+				<Product product={product} key={product._id}/>
+			))}
+		</div>
+	);
+};
+
+export default Products;

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../context/GlobalState';
+import { UserContext } from '../../context/UserContext/UserState';
 import './Register.scss'
 
 const Register = () => {
@@ -11,7 +11,7 @@ const Register = () => {
 		birthday: '',
 	};
 	const [user, setUser] = useState(userInitialValue);
-	const { register } = useContext(GlobalContext);
+	const { register } = useContext(UserContext);
 	const [btnDisabled, setBtnDisabled] = useState(true);
 	const [message, setMessage] = useState('');
 
@@ -65,6 +65,7 @@ const Register = () => {
 
 		return (
 			<div id='registerDiv'>
+				<h2>Register</h2>
 				<form onSubmit={handleSubmit}>
 					<div className='form-row'>
 						<div className='col-md-4 mb-3'>
@@ -105,24 +106,17 @@ const Register = () => {
 						</div>
 						<div className='col-md-4 mb-3'>
 							<label htmlFor='usernameInput'>Username</label>
-							<div className='input-group'>
-								<div className='input-group-prepend'>
-									<span className='input-group-text' id='inputGroupPrepend2'>
-										@
-									</span>
-								</div>
-								<input
-									type='text'
-									className='form-control'
-									id='usernameInput'
-									placeholder='Username'
-									aria-describedby='inputGroupPrepend2'
-									name='username'
-									onChange={handleInputChange}
-									required
-								/>
-							</div>
+							<input
+								type='text'
+								className='form-control'
+								name='username'
+								id='usernameInput'
+								placeholder='Username'
+								onChange={handleInputChange}
+								required
+							/>
 						</div>
+						
 					</div>
 					<div className='form-row'>
 						<div className='col-md-6 mb-3'>
