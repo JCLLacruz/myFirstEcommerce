@@ -17,11 +17,12 @@ export const GlobalProvider = ({ children }) => {
   
     const register = async (user) => {
             try {
-              const res = await axios.post(API_URL, user);
+              const res = await axios.post(API_URL + '/users/', user);
               dispatch({
                 type: "POST_USER",
                 payload: res.data.user,
               });
+              console.log('post',res.data);
             } catch (error) {
               console.error(error);
             }
