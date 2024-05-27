@@ -6,16 +6,16 @@ import './Product.scss';
 const Product = ({ product, _id}) => {
 
 
-	const { cart, getProductById } = useContext(ProductContext);
+	const { productById, getProductById } = useContext(ProductContext);
 
 	const addToCart = (_id)=> {
 		getProductById(_id);
 		if (localStorage.cart == undefined) {
-			const firstCart = [cart._id];
+			const firstCart = [productById._id];
 			localStorage.setItem('cart', JSON.stringify(firstCart));
 		} else {
 			let productsCart = JSON.parse(localStorage.getItem('cart'));
-			productsCart.push(cart._id);
+			productsCart.push(productById._id);
 			localStorage.removeItem('cart');
 			localStorage.setItem('cart', JSON.stringify(productsCart));
 		}

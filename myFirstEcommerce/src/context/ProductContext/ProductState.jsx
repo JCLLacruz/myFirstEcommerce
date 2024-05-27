@@ -8,7 +8,7 @@ const API_URL ='https://serverecommerce-w9o2.onrender.com';
 const initialState = {
   products: [],
   product: {},
-  productById: []
+  productById: {}
 }
 
 export const ProductContext = createContext(initialState);
