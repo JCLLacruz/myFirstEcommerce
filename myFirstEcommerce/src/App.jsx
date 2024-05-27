@@ -2,6 +2,14 @@ import './App.css'
 import './custom.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { GlobalProvider } from './context/GlobalState';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import Products from './components/Products/Products';
+import Profile from './components/Profile/Profile';
+import Cart from './components/Cart/Cart';
+import Register from './components/Register/Register';
 
 function App() {
   return (
