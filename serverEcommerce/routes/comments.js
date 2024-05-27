@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
-const CommentController = require('../controllers/CommentController');
-const { authentication, isAuthor } = require('../middleware/authentication');
+const CommentController = require('../controllers/CommentController.js');
+const { authentication, isAuthor } = require('../middleware/authentication.js');
 const {uploadCommentImages} = require('../middleware/multer.js')
 
 router.post('/', authentication, uploadCommentImages.single('commentImg'), CommentController.create);
