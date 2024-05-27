@@ -7,12 +7,12 @@ const Cart = () => {
 	const [productsCart, setproductsCart] = useState([]);
 
 	useEffect(() => {
-		setproductsCart(JSON.parse(localStorage.getItem('cart')));
+		setproductsCart(JSON.parse(localStorage.getItem('cart')) || []);
 	}, []);
 console.log(productsCart);
 	return (
 		<div id='cartDiv' className='d-flex flex-wrap gap-2'>
-			{productsCart === null || [] ? (
+			{productsCart === null ? (
                 <h2>Your cart is empty</h2>
             ) : (
               productsCart.map(productId => {

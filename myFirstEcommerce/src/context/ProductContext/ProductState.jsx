@@ -27,9 +27,9 @@ export const ProductProvider = ({ children }) => {
               console.error(error);
             }
           };
-    const getAll = async () => {
+    const getAll = async (page) => {
             try {
-              const res = await axios.get(API_URL + '/products/');
+              const res = await axios.get(API_URL + '/products/' + `?page=${page}`);
               dispatch({
                 type: "GET_ALL_PRODUCTS",
                 payload: res.data,
