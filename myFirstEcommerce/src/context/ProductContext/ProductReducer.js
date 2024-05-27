@@ -10,6 +10,11 @@ const products = (state, action) => {
 				...state,
 				products: action.payload.products,
 			};
+		case 'GET_PRODUCT_BY_ID':
+			return {
+				...state,
+				productById: action.payload.product,
+			};
 		default:
 			return state;
 	}

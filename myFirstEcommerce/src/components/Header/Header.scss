@@ -5,7 +5,7 @@
 
   .navbar-brand, 
   .nav-link {
-    color: #fff !important;
+    color: $textColor !important;
     &:hover {
       color: map-get($theme-colors, "light") !important;
     }
