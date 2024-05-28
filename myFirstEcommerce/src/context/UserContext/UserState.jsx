@@ -9,7 +9,7 @@ const token = localStorage.getItem('token') || '';
 const initialState = {
 	token: token,
 	users: [],
-	user: {},
+	user: null,
 };
 
 export const UserContext = createContext(initialState);
@@ -38,7 +38,6 @@ export const UserProvider = ({ children }) => {
 			if (res.data) {
 				localStorage.setItem('token', res.data.token);
 			}
-			console.log('post', res.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -54,14 +53,29 @@ export const UserProvider = ({ children }) => {
 				type: 'LOGGED_USER',
 				payload: res.data,
 			});
-			if (res.data) {
-				localStorage.setItem('token', res.data.token);
-			}
-			console.log('post', res.data);
 		} catch (error) {
 			console.error(error);
 		}
 	};
+	const logout = async(_id)=>{
+		try {
+			const token = localStorage.getItem("token")
+			const res = await axios.delete(API_URL +"/logout/"+ _id,{
+				headers:{
+					Authorization:token
+				}
+			})
+			if(res.data){
+				localStorage.removeItem("token")
+				dispatch({
+					type:"LOGOUT_USER"
+				})
+			}
+	
+		} catch (error) {
+			console.error(error);
+		}
+	  };
 	return (
 		<UserContext.Provider
 			value={{
@@ -71,6 +85,7 @@ export const UserProvider = ({ children }) => {
 				register,
 				login,
 				getInfo,
+				logout,
 			}}
 		>
 			{children}

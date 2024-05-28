@@ -10,9 +10,11 @@ const Products = () => {
 	const [btnDisabledPrev, setBtnDisabledPrev] = useState(false);
 
 	const setBtnDisabled = () => {
-		if(page === 1) {
+		if(page == 1) {
 			setBtnDisabledPrev(true)
-		}
+		} else {
+			setBtnDisabledPrev(false)
+		};
 		if (page === products.length) {
 			setBtnDisabledNext(true)
 		}
@@ -28,7 +30,7 @@ const Products = () => {
 	useEffect(() => {
 			getAll(page);
 			setBtnDisabled()
-	}, []);
+	}, [page]);
 
 	return (
 		<div id='productsView' className='d-flex flex-column p-3 align-items-center'>

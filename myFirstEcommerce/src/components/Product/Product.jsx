@@ -43,7 +43,7 @@ const Product = ({ product, _id }) => {
 				{contextHolder}
 			<Card
 				style={{
-					width: 300,
+					width: 200,
 				}}
 				cover={<img alt='pokemon {product.name}' src={product.image_path} />}
 			>

@@ -9,9 +9,10 @@ const Profile = () => {
 
   useEffect(()=>{
     getInfo()
-  },[token])
+  },[user])
+
 console.log(user);
-  if (user == {}) {
+  if (!user) {
     return <Spin size="large" />;
   }
 
@@ -28,7 +29,7 @@ console.log(user);
       </div>
       <div>
         <FireOutlined style={{ marginRight: 8 }} />
-        <strong>Email:</strong> {user.birthday}
+        <strong>Birthgay: </strong> {user.birthday}
       </div>
     </Card>
     </div>
