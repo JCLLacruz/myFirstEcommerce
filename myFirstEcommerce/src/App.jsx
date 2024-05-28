@@ -8,7 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import $ from 'jquery';
 
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import MyFooter from './components/Footer/MyFooter';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Products from './components/Products/Products';
@@ -31,7 +31,7 @@ function App() {
 							<Route path='/products' element={<Products />} />
 							<Route path='/profile' element={<Profile />} />
 						</Routes>
-						<Footer />
+						<MyFooter />
 					</ProductProvider>
 				</UserProvider>
 			</BrowserRouter>
