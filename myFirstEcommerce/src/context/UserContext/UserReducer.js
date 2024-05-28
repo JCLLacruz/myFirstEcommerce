@@ -11,6 +11,11 @@ const users = (state, action) => {
 				user: action.payload.user,
 				token: action.payload.token,
 			};
+		case 'LOGGED_USER':
+			return {
+				...state,
+				user: action.payload.user,
+			};
 		default:
 			return state;
 	}

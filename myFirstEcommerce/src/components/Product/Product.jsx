@@ -1,12 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../context/ProductContext/ProductState';
 import './Product.scss';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Card } from 'antd';
-const { Meta } = Card;
+import { SmileOutlined } from '@ant-design/icons';
+import { Card, notification } from 'antd';
 
 const Product = ({ product, _id }) => {
 	const { productById, getProductById } = useContext(ProductContext);
+	const [api, contextHolder] = notification.useNotification();
+
+
+	const openNotification = () => {
+		api.open({
+		  message: `Product ${product.productName} added`,
+		  description:
+			'We are waiting for you in the cart to finish your purchase.',
+		  icon: (
+			<SmileOutlined
+			  style={{
+				color: '#108ee9',
+			  }}
+			/>
+		  ),
+		});
+	  };
+
 	const addToCart = (_id) => {
 		getProductById(_id);
 		if (localStorage.cart == undefined) {
@@ -18,15 +35,12 @@ const Product = ({ product, _id }) => {
 			localStorage.removeItem('cart');
 			localStorage.setItem('cart', JSON.stringify(productsCart));
 		}
-		// setTimeout(() => {
-		// 	navigate('/ListNews');
-		// }, '3000');
+	openNotification();
 	};
-
-	console.log(_id);
 
 	return (
 		<>
+				{contextHolder}
 			<Card
 				style={{
 					width: 300,

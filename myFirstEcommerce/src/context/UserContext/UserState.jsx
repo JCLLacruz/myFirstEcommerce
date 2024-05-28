@@ -46,12 +46,12 @@ export const UserProvider = ({ children }) => {
 	const getInfo = async (user) => {
 		try {
 			const token = localStorage.getItem('token');
-			const res = await axios.get(API_URL + '/login', {
+			const res = await axios.get(API_URL + '/userinfo', {
 				headers: {
 				  Authorization: token,
 				},});
 			dispatch({
-				type: 'LOGIN_USER',
+				type: 'LOGGED_USER',
 				payload: res.data,
 			});
 			if (res.data) {
@@ -65,10 +65,12 @@ export const UserProvider = ({ children }) => {
 	return (
 		<UserContext.Provider
 			value={{
+				users: state.users,
 				user: state.user,
 				token,
 				register,
 				login,
+				getInfo,
 			}}
 		>
 			{children}

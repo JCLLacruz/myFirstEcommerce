@@ -39,10 +39,10 @@ const Login = () => {
   const [form] = Form.useForm();
 
   const {login, user} = useContext(UserContext);
+  const [api, contextHolder] = notification.useNotification();
 
   const navigate = useNavigate();
-  const [api, contextHolder] = notification.useNotification();
-console.log('user',user);
+  
   const openNotification = () => {
     api.open({
       message: `Welcome ${user.firstname}`,
@@ -78,6 +78,7 @@ console.log('user',user);
 				form={form}
 				name='register'
 				onFinish={onFinish}
+				onFinishFailed={onFinishFailed}
 				style={{
 					maxWidth: 600,
 				}}
