@@ -9,9 +9,8 @@ const Profile = () => {
 
   useEffect(()=>{
     getInfo()
-  },[user])
+  },[token])
 
-console.log(user);
   if (!user) {
     return <Spin size="large" />;
   }
@@ -21,15 +20,15 @@ console.log(user);
     <Card title="User Information" style={{ width: 300 }}>
       <div>
         <UserOutlined style={{ marginRight: 8 }} />
-        <strong>Name:</strong> {user.firstname}
+        Name: {user.firstname}
       </div>
       <div>
         <MailOutlined style={{ marginRight: 8 }} />
-        <strong>Email:</strong> {user.email}
+        Email: {user.email}
       </div>
       <div>
         <FireOutlined style={{ marginRight: 8 }} />
-        <strong>Birthgay: </strong> {user.birthday}
+        Birthday: {user.birthday}
       </div>
     </Card>
     </div>

@@ -1,11 +1,9 @@
-import './App.css';
-import './custom.css';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './context/UserContext/UserState';
 import { ProductProvider } from './context/ProductContext/ProductState';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import $ from 'jquery';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import Header from './components/Header/Header';
 import MyFooter from './components/Footer/MyFooter';
@@ -15,10 +13,13 @@ import Products from './components/Products/Products';
 import Profile from './components/Profile/Profile';
 import Cart from './components/Cart/Cart';
 import Register from './components/Register/Register';
+import './App.css';
+import './custom.css';
 
 function App() {
 	return (
 		<>
+		<button className='btn btn-primary'>eee</button>
 			<BrowserRouter>
 				<UserProvider>
 					<ProductProvider>

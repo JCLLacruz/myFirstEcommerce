@@ -40,7 +40,7 @@ const Products = () => {
 					<Product product={product} _id={product._id} key={product._id} />
 				))}
 			</div>
-			<div id='btnDiv' className='d-flex gap-5'>
+			<div id='btnDiv' className='d-flex gap-5 mt-3'>
 				<button className='btn btn-primary' onClick={() => prevPage()} disabled={btnDisabledPrev} >Prev</button>
 				<button className='btn btn-primary' onClick={() => nextPage()} disabled={btnDisabledNext}>Next</button>
 			</div>
