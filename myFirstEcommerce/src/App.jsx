@@ -2,9 +2,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './context/UserContext/UserState';
 import { ProductProvider } from './context/ProductContext/ProductState';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/js/bootstrap.bundle.min';
-
 import Header from './components/Header/Header';
 import MyFooter from './components/Footer/MyFooter';
 import Home from './components/Home/Home';
@@ -19,7 +16,6 @@ import './custom.css';
 function App() {
 	return (
 		<>
-		<button className='btn btn-primary'>eee</button>
 			<BrowserRouter>
 				<UserProvider>
 					<ProductProvider>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Button, DatePicker, Form, Input } from 'antd';
 import { UserContext } from '../../context/UserContext/UserState';
 import './Register.scss';
+import { useNavigate } from 'react-router-dom';
 
 const formItemLayout = {
 	labelCol: {
@@ -36,11 +37,13 @@ const tailFormItemLayout = {
 
 const Register = () => {
 	const [form] = Form.useForm();
+	const navigate = useNavigate();
 
 	const { register } = useContext(UserContext);
 
 	const onFinish = (values) => {
 		register(values);
+		navigate('/login')
 	};
 
 	return (

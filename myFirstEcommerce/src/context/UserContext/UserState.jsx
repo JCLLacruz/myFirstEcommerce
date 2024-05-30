@@ -5,11 +5,12 @@ import axios from 'axios';
 const API_URL = 'https://serverecommerce-w9o2.onrender.com/users';
 
 const token = localStorage.getItem('token') || '';
+const user = JSON.parse(localStorage.getItem('user')) || '';
 
 const initialState = {
 	token: token,
 	users: [],
-	user: null,
+	user: user,
 };
 
 export const UserContext = createContext(initialState);
@@ -37,6 +38,7 @@ export const UserProvider = ({ children }) => {
 			});
 			if (res.data) {
 				localStorage.setItem('token', res.data.token);
+				localStorage.setItem('user', JSON.stringify(res.data.user));
 			}
 		} catch (error) {
 			console.error(error);
@@ -57,12 +59,12 @@ export const UserProvider = ({ children }) => {
 			console.error(error);
 		}
 	};
-	const logout = async(_id)=>{
+	const logout = async()=>{
 		try {
 			const token = localStorage.getItem("token")
-			const res = await axios.delete(API_URL +"/logout/"+ _id,{
+			const res = await axios.delete(API_URL +"/logout/",{
 				headers:{
-					Authorization:token
+					Authorization: token
 				}
 			})
 			if(res.data){

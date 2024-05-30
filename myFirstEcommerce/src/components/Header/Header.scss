@@ -1,4 +1,31 @@
-.ant-menu-submenu-horizontal {
-    display: flex;
-    justify-content: flex-end;
-  }
+@import '../../custom.scss';
+
+.ant-menu > .ant-menu-item:hover,
+.ant-menu > .ant-menu-submenu:hover,
+.ant-menu > .ant-menu-item-open,
+.ant-menu> .ant-menu-submenu-open,
+.ant-menu-overflow-item,
+.ant-menu-item,
+.ant-menu-item-selected,
+.ant-menu-item-only-child {
+  color: $secondary !important;
+}
+
+.ant-menu > .ant-menu-item-selected,
+.ant-menu > .ant-menu-submenu-selected {
+  background-color: $danger !important;
+
+}
+.ant-menu > .ant-menu-item-active,
+.ant-menu> .ant-menu-submenu-active {
+  background-color: $info !important;
+}
+
+#brandDiv {
+	align-items: center;
+  background-color: $primary;
+	img {
+		width: 8rem;
+    margin-right: 1rem;
+	}
+}

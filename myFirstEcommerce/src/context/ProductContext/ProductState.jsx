@@ -51,12 +51,17 @@ export const ProductProvider = ({ children }) => {
 			console.error(error);
 		}
 	};
-  const addToCart = (product) => {
-    dispatch({
-      type: 'ADD_TO_CART',
-      payload: product,
-    })
-  }
+	const addToCart = (product) => {
+		dispatch({
+			type: 'ADD_TO_CART',
+			payload: product,
+		});
+	};
+	const clearCart = (product) => {
+		dispatch({
+			type: 'CLEAR_CART',
+		});
+	};
 
 	return (
 		<ProductContext.Provider
@@ -64,11 +69,12 @@ export const ProductProvider = ({ children }) => {
 				product: state.product,
 				products: state.products,
 				productById: state.productById,
-        cart: state.cart,
+				cart: state.cart,
 				create,
 				getAll,
 				getProductById,
-        addToCart
+				addToCart,
+				clearCart
 			}}
 		>
 			{children}
