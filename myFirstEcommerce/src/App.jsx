@@ -10,6 +10,7 @@ import Products from './components/Products/Products';
 import Profile from './components/Profile/Profile';
 import Cart from './components/Cart/Cart';
 import Register from './components/Register/Register';
+import AdminConsole from './components/AdminConsole/AdminConsole';
 import './App.css';
 import './custom.css';
 
@@ -27,6 +28,7 @@ function App() {
 							<Route path='/register' element={<Register />} />
 							<Route path='/products' element={<Products />} />
 							<Route path='/profile' element={<Profile />} />
+							<Route path='/adminConsole' element={<AdminConsole />} />
 						</Routes>
 						<MyFooter />
 					</ProductProvider>

@@ -3,14 +3,16 @@ import { ProductContext } from '../../context/ProductContext/ProductState';
 import './Product.scss';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Card, notification } from 'antd';
+import { UserContext } from '../../context/UserContext/UserState';
 
-const Product = ({ product, _id }) => {
-	const { addToCart } = useContext(ProductContext);
+const Product = ({ product, userRole }) => {
+	const { addToCart, deleteProduct, getAll } = useContext(ProductContext);
+	const { token } = useContext(UserContext);
 	const [api, contextHolder] = notification.useNotification();
 
-	const openNotification = (product) => {
+	const openNotification = (product, message) => {
 		api.open({
-			message: <p>{product.productName} was added to cart</p>,
+			message ,
 			icon: (
 				<div>
 					<div>
@@ -48,15 +50,30 @@ const Product = ({ product, _id }) => {
 						<p className='price'>{product.price.toFixed(2)}€</p>
 					</div>
 					<div className='mt-5'>
+						{userRole == 'admin' ? (
 						<button
+							className='btn btn-danger'
+							onClick={() => {
+								deleteProduct(product._id,token);
+								const message = <p>{product.productName} was deleted from Database</p>;
+								openNotification(product, message);
+								getAll()
+							}}
+						>
+							Delete Product
+						</button>
+						) : (
+							<button
 							className='btn btn-primary'
 							onClick={() => {
 								addToCart(product);
-								openNotification(product);
+								const message = <p>{product.productName} was added to cart</p>;
+								openNotification(product, message);
 							}}
 						>
 							Add to Cart
 						</button>
+						)}
 					</div>
 				</div>
 			</Card>

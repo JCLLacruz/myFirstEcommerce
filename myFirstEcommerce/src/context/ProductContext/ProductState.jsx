@@ -51,6 +51,16 @@ export const ProductProvider = ({ children }) => {
 			console.error(error);
 		}
 	};
+	const deleteProduct = async (_id, token) => {
+		try {
+			const res = await axios.delete(API_URL + '/id/' + _id,{
+				headers: {
+				  Authorization: token,
+				},});
+		} catch (error) {
+			console.error(error);
+		}
+	};
 	const addToCart = (product) => {
 		dispatch({
 			type: 'ADD_TO_CART',
@@ -74,7 +84,8 @@ export const ProductProvider = ({ children }) => {
 				getAll,
 				getProductById,
 				addToCart,
-				clearCart
+				clearCart,
+				deleteProduct
 			}}
 		>
 			{children}

@@ -17,6 +17,7 @@ const Header = () => {
 	useEffect(() => {
 		if (current == 'logout') {
 			logout();
+			localStorage.removeItem('user');
 		}
 	}, [current]);
 
@@ -41,12 +42,14 @@ const Header = () => {
 				<Menu.Item key='shop'>
 					<Link to='/products'>Shop</Link>
 				</Menu.Item>
+				{token && (
 				<Menu.Item key='cart'>
 					<Link to='/cart'>Cart </Link>
 					<Badge count={cart.length} size='small'>
 						<ShoppingCartOutlined size='large' />
 					</Badge>
 				</Menu.Item>
+				)}
 				<div className='position-absolute end-0'>
 					<SubMenu key='userMenu' icon={<UserOutlined />} title='User' popupClassName='submenu-right-align'>
 						{token ? (
@@ -57,12 +60,10 @@ const Header = () => {
 								<Menu.Item key='logout'>
 									<Link>Logout</Link>
 								</Menu.Item>
-								{user?.role == 'admin' ? (
-									<Menu.Item key='admin'>
-										<Link>Admin console</Link>
+								{user?.role == 'admin' && (
+									<Menu.Item key='adminConsole'>
+										<Link to='/adminConsole'>Admin console</Link>
 									</Menu.Item>
-								) : (
-									''
 								)}
 							</>
 						) : (

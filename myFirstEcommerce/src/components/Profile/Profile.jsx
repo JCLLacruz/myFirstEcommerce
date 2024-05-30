@@ -36,8 +36,7 @@ const {Panel} = Collapse;
 				<div id='ordersDiv' className='mt-5'>
 					<h2>Your Orders:</h2>
 					{user.OrderIds.map((order) => {
-            const amount = order.ProductIds.reduce((a,b)=>a +b.price,0).toFixed(2)
-            console.log("AAAA",amount)
+            const amount = order.ProductIds?.reduce((a,b)=>a +b.price,0).toFixed(2)
 						return (
 							<Collapse defaultActiveKey={['1']} >
 								<Panel header={
@@ -46,7 +45,7 @@ const {Panel} = Collapse;
                   <p>Total amount: {amount} €</p>
                   </>
               } key={order._id}>
-									{order.ProductIds.map(product => {
+									{order.ProductIds?.map(product => {
                     return (
                       <div className='productOrderCard' key={product._id}>
                         <img src={product.image_path}/>
