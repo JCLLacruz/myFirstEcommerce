@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { UserContext } from '../../context/UserContext/UserState';
 import { Badge, Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.scss';
 import { ProductContext } from '../../context/ProductContext/ProductState';
 
@@ -12,21 +12,20 @@ const Header = () => {
 	const [current, setCurrent] = useState('home');
 	const { token, logout, user } = useContext(UserContext);
 	const { cart } = useContext(ProductContext);
+	const navigate = useNavigate();
+
+	const handleClick = (e) => {
+		setCurrent(e.key);
+	};
 
 	useEffect(() => {
 		if (current == 'logout') {
-			logout();
-			localStorage.removeItem('user');
 		}
 	}, [current]);
 
 	useEffect(() => {
 		localStorage.setItem('cart', JSON.stringify(cart));
 	}, [cart]);
-
-	const handleClick = (e) => {
-		setCurrent(e.key);
-	};
 
 	return (
 		<div>
@@ -42,12 +41,12 @@ const Header = () => {
 					<Link to='/products'>Shop</Link>
 				</Menu.Item>
 				{token && (
-				<Menu.Item key='cart'>
-					<Link to='/cart'>Cart </Link>
-					<Badge count={cart.length} size='small'>
-						<ShoppingCartOutlined size='large' />
-					</Badge>
-				</Menu.Item>
+					<Menu.Item key='cart'>
+						<Link to='/cart'>Cart </Link>
+						<Badge count={cart.length} size='small'>
+							<ShoppingCartOutlined size='large' />
+						</Badge>
+					</Menu.Item>
 				)}
 				<div className='position-absolute end-0'>
 					<SubMenu key='userMenu' icon={<UserOutlined />} title='User' popupClassName='submenu-right-align'>
@@ -57,7 +56,12 @@ const Header = () => {
 									<Link to='/profile'>Profile</Link>
 								</Menu.Item>
 								<Menu.Item key='logout'>
-									<Link>Logout</Link>
+									<Link onClick={()=>{
+												logout();
+												localStorage.removeItem('user');
+												localStorage.removeItem('token');
+												navigate('/login')									
+									}}>Logout</Link>
 								</Menu.Item>
 								{user?.role == 'admin' && (
 									<Menu.Item key='adminConsole'>

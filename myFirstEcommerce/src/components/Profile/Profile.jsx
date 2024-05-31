@@ -16,7 +16,6 @@ const Profile = () => {
 	if (!user) {
 		return <Spin size='large' />;
 	}
-	console.log(user.OrderIds);
 	return (
 		<div id='profileDiv'>
 			<Card title='User Information' style={{ width: 700 }}>
@@ -49,7 +48,6 @@ const Profile = () => {
 								>
 									<h4 className='mb-3'>Status: {order.status}</h4>
 									{order.ProductIds?.map((product) => {
-										{console.log('product',product);}
 										return (
 											<div className='productOrderCard' key={product._id}>
 												<img src={product.image_path} />

@@ -28,7 +28,6 @@ const getAllOrders = async () => {
     }
 }
 const updateOrder = async (order) => {
-    console.log(order)
     const token = localStorage.getItem('token');
     try {
         const res = await axios.put(API_URL + '/orders/id/'+ order._id,order, {
@@ -42,7 +41,6 @@ const updateOrder = async (order) => {
     }
 }
 const deleteOrder = async (orderId) => {
-    console.log(orderId)
     const token = localStorage.getItem('token');
     try {
         const res = await axios.delete(API_URL + '/orders/id/'+ orderId, {
