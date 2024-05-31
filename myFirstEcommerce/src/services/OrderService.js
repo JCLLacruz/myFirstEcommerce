@@ -41,11 +41,11 @@ const updateOrder = async (order) => {
         console.error(error);
     }
 }
-const deleteOrder = async (order) => {
-    console.log(order)
+const deleteOrder = async (orderId) => {
+    console.log(orderId)
     const token = localStorage.getItem('token');
     try {
-        const res = await axios.delete(API_URL + '/orders/id/'+ order._id, {
+        const res = await axios.delete(API_URL + '/orders/id/'+ orderId, {
             headers: {
                 Authorization: token,
             }

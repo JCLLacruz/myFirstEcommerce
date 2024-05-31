@@ -69,7 +69,7 @@ const AdminOrders = () => {
 								</div>
 								<div className='d-flex gap-2'>
 									<EditOutlined onClick={() => showModal(order)} />
-									<DeleteOutlined onClick={() => OrderService.deleteOrder(order)} />
+									<DeleteOutlined onClick={() => deleteOrder(order._id)} />
 								</div>
 							</div>
 						))}
