@@ -45,7 +45,7 @@ const deleteOrder = async (order) => {
     console.log(order)
     const token = localStorage.getItem('token');
     try {
-        const res = await axios.put(API_URL + '/orders/id/'+ order._id,order, {
+        const res = await axios.delete(API_URL + '/orders/id/'+ order._id, {
             headers: {
                 Authorization: token,
             }

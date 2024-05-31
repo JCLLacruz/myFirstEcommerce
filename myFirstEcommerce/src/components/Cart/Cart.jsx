@@ -3,10 +3,11 @@ import { ProductContext } from '../../context/ProductContext/ProductState';
 import Product from '../Product/Product';
 import { Empty } from 'antd';
 import OrderService from '../../services/OrderService.js';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
 	const { cart, clearCart } = useContext(ProductContext);
-
+	const navigate = useNavigate();
 	if (cart.length == 0) {
 		return (
 			<Empty
@@ -23,13 +24,18 @@ const Cart = () => {
 	const createNewOrder = () => {
 		OrderService.createOrder(cart);
 		clearCart();
+		navigate('/profile');
 	};
+	const clearCartNow = () => {
+		clearCart();
+		navigate('/products');
+	}
 
 	return (
 		<div className='d-flex flex-column p-3 align-items-center'>
 			<h1>Your Cart</h1>
 			<div className='d-flex gap-2 mb-3'>
-				<button className='btn btn-primary' onClick={clearCart}>
+				<button className='btn btn-primary' onClick={clearCartNow}>
 					Empty cart
 				</button>
 				<button className='btn btn-primary' onClick={createNewOrder}>

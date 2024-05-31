@@ -36,19 +36,19 @@ const Profile = () => {
 					<div id='ordersDiv' className='mt-5'>
 					<h2>Your Orders:</h2>
 					{user.OrderIds.map( (order) => {
-						//const amount = order.ProductIds?.reduce((a, b) => a + b.price, 0).toFixed(2);
+						const amount = order.ProductIds?.reduce((a, b) => a + b.price, 0).toFixed(2);
 						return (
 							<Collapse  key={order._id}>
 								<Panel
 									header={
 										<>
 											<p>Order: {order._id}</p>
-											{/* <p>Total amount: {amount} €</p> */}
+											<p>Total amount: {amount} €</p>
 										</>
 									}
 								>
-									<h4>Status: {order.status}</h4>
-									{/* {order.ProductIds?.map((product) => {
+									<h4 className='mb-3'>Status: {order.status}</h4>
+									{order.ProductIds?.map((product) => {
 										{console.log('product',product);}
 										return (
 											<div className='productOrderCard' key={product._id}>
@@ -60,7 +60,7 @@ const Profile = () => {
 												</div>
 											</div>
 										);
-									})} */}
+									})}
 								</Panel>
 							</Collapse>
 						);

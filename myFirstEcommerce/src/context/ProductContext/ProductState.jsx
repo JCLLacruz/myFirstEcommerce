@@ -87,7 +87,7 @@ export const ProductProvider = ({ children }) => {
 			payload: product,
 		});
 	};
-	const clearCart = (product) => {
+	const clearCart = () => {
 		dispatch({
 			type: 'CLEAR_CART',
 		});
