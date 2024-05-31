@@ -14,13 +14,19 @@ const users = (state, action) => {
 		case 'LOGGED_USER':
 			return {
 				...state,
-				user: action.payload.user,
+				user: action.payload[0].user,
+				token: action.payload[1],
 			};
 		case 'LOGOUT_USER':
 			return {
 				...state,
 				token: '',
 				user: null
+			};
+		case 'ERROR_LOGIN':
+			return {
+				...state,
+				error: action.payload,
 			};
 		default:
 			return state;

@@ -38,7 +38,7 @@ const Cart = () => {
 			</div>
 			<div id='cartDiv' className='d-flex flex-wrap justify-content-center gap-2'>
 				{cart.map((product) => (
-					<Product product={product} key={product._id}/>
+					<Product product={product} key={product._id} />
 				))}
 			</div>
 		</div>

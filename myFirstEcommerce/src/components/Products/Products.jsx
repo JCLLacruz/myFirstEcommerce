@@ -37,7 +37,7 @@ const Products = () => {
 			<h1>Catch them all!!!</h1>
 			<div id='productsDiv' className='d-flex flex-wrap justify-content-center gap-2'>
 				{products.map((product) => (
-					<Product product={product} _id={product._id} key={product._id} />
+					<Product product={product} _id={product._id} key={product._id} cart={"inCart"}/>
 				))}
 			</div>
 			<div id='btnDiv' className='d-flex gap-5 mt-3'>

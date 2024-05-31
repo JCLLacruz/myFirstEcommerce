@@ -51,12 +51,32 @@ export const ProductProvider = ({ children }) => {
 			console.error(error);
 		}
 	};
-	const deleteProduct = async (_id, token) => {
+	const deleteProduct = async (_id) => {
 		try {
+			const token = localStorage.getItem('token');
 			const res = await axios.delete(API_URL + '/id/' + _id,{
 				headers: {
 				  Authorization: token,
 				},});
+				dispatch({
+					type: 'DELETE_PRODUCT',
+					payload: res.data
+				})
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	const updateProduct = async ( product) => {
+		try {
+			const token = localStorage.getItem('token');
+			const res = await axios.put(API_URL + '/id/' +product._id, product, {
+				headers: {
+				  Authorization: token,
+				},});
+				dispatch({
+					type: 'UPDATE_PRODUCT',
+					payload: res.data
+				})
 		} catch (error) {
 			console.error(error);
 		}
@@ -85,7 +105,8 @@ export const ProductProvider = ({ children }) => {
 				getProductById,
 				addToCart,
 				clearCart,
-				deleteProduct
+				deleteProduct,
+				updateProduct
 			}}
 		>
 			{children}

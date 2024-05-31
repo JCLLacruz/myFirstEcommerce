@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button, notification, Form, Input } from 'antd';
 import { UserContext } from '../../context/UserContext/UserState';
 import { useNavigate } from 'react-router-dom';
@@ -38,16 +38,15 @@ const tailFormItemLayout = {
 const Login = () => {
   const [form] = Form.useForm();
 
-  const {login, user} = useContext(UserContext);
+  const {login, user, error} = useContext(UserContext);
   const [api, contextHolder] = notification.useNotification();
 
   const navigate = useNavigate();
   
-  const openNotification = () => {
+  const openNotification = (message, description) => {
     api.open({
-      message: `Welcome ${user.firstname}`,
-      description:
-        'Welcome to the world of pokemons! Ready to capture them, for a small price, all of them!!',
+      message,
+      description,
       icon: (
         <SmileOutlined
           style={{
@@ -60,15 +59,21 @@ const Login = () => {
 
   const onFinish = (values) => {
     login(values);
-	openNotification();
+	const message = `Welcome ${user.firstname}`
+	const description = 'Welcome to the world of pokemons! Ready to capture them, for a small price, all of them!!';
+	openNotification(message, description);
 	setTimeout(()=>{
 		navigate('/profile')
 	},'2000')
   };
  
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  useEffect(()=>{
+	if(error != null){
+		const message = `We have a problem with your login. `
+		const description = 'Please crontrole your credentials';
+		openNotification(message, description);
+	}
+  },[error])
 
   return (
     <div id='formDiv'>
@@ -78,7 +83,6 @@ const Login = () => {
 				form={form}
 				name='register'
 				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
 				style={{
 					maxWidth: 600,
 				}}

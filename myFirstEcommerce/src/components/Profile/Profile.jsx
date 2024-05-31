@@ -7,17 +7,16 @@ import './Profile.scss';
 const Profile = () => {
 	const { getInfo, token, user } = useContext(UserContext);
 
-const {Panel} = Collapse;
+	const { Panel } = Collapse;
 
 	useEffect(() => {
 		getInfo();
 	}, [token]);
 
-
 	if (!user) {
 		return <Spin size='large' />;
 	}
-
+	console.log(user.OrderIds);
 	return (
 		<div id='profileDiv'>
 			<Card title='User Information' style={{ width: 700 }}>
@@ -33,35 +32,41 @@ const {Panel} = Collapse;
 					<FireOutlined style={{ marginRight: 8 }} />
 					Birthday: {user.birthday}
 				</div>
-				<div id='ordersDiv' className='mt-5'>
+				{user.OrderIds.length != 0 && (
+					<div id='ordersDiv' className='mt-5'>
 					<h2>Your Orders:</h2>
-					{user.OrderIds.map((order) => {
-            const amount = order.ProductIds?.reduce((a,b)=>a +b.price,0).toFixed(2)
+					{user.OrderIds.map( (order) => {
+						//const amount = order.ProductIds?.reduce((a, b) => a + b.price, 0).toFixed(2);
 						return (
-							<Collapse defaultActiveKey={['1']} >
-								<Panel header={
-                  <>
-                  <p>Order: {order._id}</p>
-                  <p>Total amount: {amount} €</p>
-                  </>
-              } key={order._id}>
-									{order.ProductIds?.map(product => {
-                    return (
-                      <div className='productOrderCard' key={product._id}>
-                        <img src={product.image_path}/>
-                        <div>
-                        <h4>{product.productName}</h4>
-                        <p>{product.description}</p>
-                        <p>Price: {product.price}</p>
-                        </div>
-                      </div>
-                    )
-                  })}
+							<Collapse  key={order._id}>
+								<Panel
+									header={
+										<>
+											<p>Order: {order._id}</p>
+											{/* <p>Total amount: {amount} €</p> */}
+										</>
+									}
+								>
+									<h4>Status: {order.status}</h4>
+									{/* {order.ProductIds?.map((product) => {
+										{console.log('product',product);}
+										return (
+											<div className='productOrderCard' key={product._id}>
+												<img src={product.image_path} />
+												<div>
+													<h4>{product.productName}</h4>
+													<p>{product.description}</p>
+													<p>Price: {product.price}</p>
+												</div>
+											</div>
+										);
+									})} */}
 								</Panel>
 							</Collapse>
 						);
 					})}
 				</div>
+				)}
 			</Card>
 		</div>
 	);

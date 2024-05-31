@@ -5,12 +5,13 @@ import axios from 'axios';
 const API_URL = 'https://serverecommerce-w9o2.onrender.com/users';
 
 const token = localStorage.getItem('token') || '';
-const user = JSON.parse(localStorage.getItem('user')) || '';
+const user = JSON.parse(localStorage.getItem('user')) || null;
 
 const initialState = {
 	token: token,
 	users: [],
 	user: user,
+	error: null,
 };
 
 export const UserContext = createContext(initialState);
@@ -42,6 +43,10 @@ export const UserProvider = ({ children }) => {
 			}
 		} catch (error) {
 			console.error(error);
+			dispatch({
+				type: 'ERROR_LOGIN',
+				payload: error,
+			});
 		}
 	};
 	const getInfo = async (user) => {
@@ -49,41 +54,43 @@ export const UserProvider = ({ children }) => {
 			const token = localStorage.getItem('token');
 			const res = await axios.get(API_URL + '/userinfo', {
 				headers: {
-				  Authorization: token,
-				},});
+					Authorization: token,
+				},
+			});
 			dispatch({
 				type: 'LOGGED_USER',
-				payload: res.data,
+				payload: [res.data, token],
 			});
 		} catch (error) {
 			console.error(error);
 		}
 	};
-	const logout = async()=>{
+	const logout = async () => {
 		try {
-			const token = localStorage.getItem("token")
-			const res = await axios.delete(API_URL +"/logout/",{
-				headers:{
-					Authorization: token
-				}
-			})
-			if(res.data){
-				localStorage.removeItem("token")
+			const token = localStorage.getItem('token');
+			const res = await axios.delete(API_URL + '/logout/', {
+				headers: {
+					Authorization: token,
+				},
+			});
+			if (res.data) {
+				localStorage.removeItem('token');
+				localStorage.removeItem('user');
 				dispatch({
-					type:"LOGOUT_USER"
-				})
+					type: 'LOGOUT_USER',
+				});
 			}
-	
 		} catch (error) {
 			console.error(error);
 		}
-	  };
+	};
 	return (
 		<UserContext.Provider
 			value={{
 				users: state.users,
 				user: state.user,
-				token:state.token,
+				token: state.token,
+				error: state.error,
 				register,
 				login,
 				getInfo,

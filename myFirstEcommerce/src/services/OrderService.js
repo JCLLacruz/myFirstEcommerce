@@ -27,10 +27,40 @@ const getAllOrders = async () => {
         console.error(error);
     }
 }
+const updateOrder = async (order) => {
+    console.log(order)
+    const token = localStorage.getItem('token');
+    try {
+        const res = await axios.put(API_URL + '/orders/id/'+ order._id,order, {
+            headers: {
+                Authorization: token,
+            }
+        })
+        return res.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+const deleteOrder = async (order) => {
+    console.log(order)
+    const token = localStorage.getItem('token');
+    try {
+        const res = await axios.put(API_URL + '/orders/id/'+ order._id,order, {
+            headers: {
+                Authorization: token,
+            }
+        })
+        return res.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 const OrderService = {
     createOrder,
-    getAllOrders
+    getAllOrders,
+    updateOrder,
+    deleteOrder
 }
 
 export default OrderService;

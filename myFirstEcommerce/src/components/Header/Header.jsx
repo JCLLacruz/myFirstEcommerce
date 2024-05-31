@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import styled from '@emotion/styled';
 import { UserContext } from '../../context/UserContext/UserState';
 import { Badge, Menu } from 'antd';
 import { Link } from 'react-router-dom';
@@ -53,7 +52,7 @@ const Header = () => {
 				<div className='position-absolute end-0'>
 					<SubMenu key='userMenu' icon={<UserOutlined />} title='User' popupClassName='submenu-right-align'>
 						{token ? (
-							<>
+							<div className='mt-3'>
 								<Menu.Item key='profile'>
 									<Link to='/profile'>Profile</Link>
 								</Menu.Item>
@@ -65,7 +64,7 @@ const Header = () => {
 										<Link to='/adminConsole'>Admin console</Link>
 									</Menu.Item>
 								)}
-							</>
+							</div>
 						) : (
 							<>
 								<Menu.Item key='login'>

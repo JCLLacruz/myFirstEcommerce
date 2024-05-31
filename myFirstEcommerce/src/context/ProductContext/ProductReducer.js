@@ -25,6 +25,21 @@ const products = (state, action) => {
 				...state,
 				cart: [],
 			};
+		case 'DELETE_PRODUCT':
+			return {
+				...state,
+				products: state.products.filter((product) => product._id !== action.payload.product._id)
+			};
+		case 'UPDATE_PRODUCT':
+			return {
+				...state,
+				products: state.products.map(product => {
+					if(product._id == action.payload.product._id){
+						product =action.payload.product
+					}
+					return product
+				})
+			};
 		default:
 			return state;
 	}
