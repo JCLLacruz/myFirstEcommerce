@@ -1,6 +1,3 @@
-# Creación del archivo README.md con el contenido proporcionado
-
-readme_content = """
 # MyFirstEcommerce
 
 ## Descripción
