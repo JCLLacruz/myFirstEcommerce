@@ -126,9 +126,3 @@ Las contribuciones son bienvenidas. Puedes hacer un fork del repositorio y envia
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 """
 
-# Escribimos el contenido al archivo README.md
-readme_path = "/mnt/data/README.md"
-with open(readme_path, "w") as readme_file:
-    readme_file.write(readme_content)
-
-readme_path
