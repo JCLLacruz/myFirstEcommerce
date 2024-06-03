@@ -60,6 +60,7 @@ const Header = () => {
 												logout();
 												localStorage.removeItem('user');
 												localStorage.removeItem('token');
+												localStorage.removeItem('cart');
 												navigate('/login')									
 									}}>Logout</Link>
 								</Menu.Item>

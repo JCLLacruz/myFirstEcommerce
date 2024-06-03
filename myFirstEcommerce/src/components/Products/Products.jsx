@@ -33,7 +33,8 @@ const Products = () => {
 	}, [page]);
 
 	return (
-		<div id='productsView' className='d-flex flex-column p-3 align-items-center'>
+		<div className='d-flex justify-content-center'>
+		<div id='productsView' className='d-flex flex-column p-3 align-items-center w-75 '>
 			<h1>Catch them all!!!</h1>
 			<div id='productsDiv' className='d-flex flex-wrap justify-content-center gap-2'>
 				{products.map((product) => (
@@ -44,6 +45,7 @@ const Products = () => {
 				<button className='btn btn-primary' onClick={() => prevPage()} disabled={btnDisabledPrev} >Prev</button>
 				<button className='btn btn-primary' onClick={() => nextPage()} disabled={btnDisabledNext}>Next</button>
 			</div>
+		</div>
 		</div>
 	);
 };
