@@ -56,12 +56,11 @@ const Header = () => {
 									<Link to='/profile'>Profile</Link>
 								</Menu.Item>
 								<Menu.Item key='logout'>
-									<Link onClick={()=>{
+									<Link to='/login' onClick={()=>{
 												logout();
 												localStorage.removeItem('user');
 												localStorage.removeItem('token');
-												localStorage.removeItem('cart');
-												navigate('/login')									
+												localStorage.removeItem('cart');								
 									}}>Logout</Link>
 								</Menu.Item>
 								{user?.role == 'admin' && (

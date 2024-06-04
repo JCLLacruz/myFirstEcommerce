@@ -12,7 +12,11 @@ const Profile = () => {
 	useEffect(() => {
 		getInfo();
 	}, [token]);
-
+	
+	useEffect(() => {
+		getInfo();
+	}, []);
+	
 	if (!user) {
 		return <Spin size='large' />;
 	}

@@ -2,7 +2,7 @@ import { createContext, useReducer } from 'react';
 import UserReducer from './UserReducer';
 import axios from 'axios';
 
-const API_URL = 'https://serverecommerce-w9o2.onrender.com/users';
+const API_URL = 'http://localhost:3001/users';
 
 const token = localStorage.getItem('token') || '';
 const user = JSON.parse(localStorage.getItem('user')) || null;

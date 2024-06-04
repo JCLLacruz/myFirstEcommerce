@@ -59,7 +59,7 @@ const Login = () => {
 
   const onFinish = (values) => {
     login(values);
-	const message = `Welcome ${user.firstname}`
+	const message = `Welcome`
 	const description = 'Welcome to the world of pokemons! Ready to capture them, for a small price, all of them!!';
 	openNotification(message, description);
 	setTimeout(()=>{
